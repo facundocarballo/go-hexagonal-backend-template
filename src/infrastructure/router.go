@@ -1,9 +1,7 @@
 package infrastructure
 
 import (
-	"encoding/json"
-	"net/http"
-
+	controllers "github.com/facundocarballo/go-hexagonal-backend-template/src/infrastructure/controllers/health"
 	"github.com/gorilla/mux"
 )
 
@@ -14,17 +12,7 @@ type Message struct {
 func Router() *mux.Router {
 	router := mux.NewRouter()
 
-	router.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-
-		response := Message{
-			Message: "OK",
-		}
-
-		if err := json.NewEncoder(w).Encode(response); err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-		}
-	}).Methods("GET")
+	router.HandleFunc("/health", controllers.HealthController).Methods("GET")
 
 	return router
 }

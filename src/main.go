@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/facundocarballo/go-hexagonal-backend-template/scr/infrastructure"
+	"github.com/facundocarballo/go-hexagonal-backend-template/src/infrastructure"
 )
 
 func main() {
